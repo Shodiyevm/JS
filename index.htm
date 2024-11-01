@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+    <div class="todo-container">
+        <h2>My To-Do List</h2>
+        <input type="text" id="todo-input" placeholder="New Task">
+        <button onclick="addTodo()">Add</button>
+        <ul id="todo-list"></ul>
+    </div>
+
+    <script>
+        
+        const permanentTasks = ["task1", "task2", "task3"];
+        const todoList = document.getElementById('todo-list');
+        permanentTasks.forEach(task => {
+            createTaskItem(task);
+        });
+
+            function createTaskItem(taskText) {
+            const listItem = document.createElement('li');
+            const taskSpan = document.createElement('span');
+            taskSpan.textContent = taskText;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = function() {
+                todoList.removeChild(listItem);
+            };
+
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.onclick = function() {
+                const newTaskText = prompt("Edit your task:", taskSpan.textContent);
+                if (newTaskText !== null && newTaskText.trim() !== "") {
+                    taskSpan.textContent = newTaskText.trim();
+                }
+            };
+
+            listItem.appendChild(taskSpan);
+            listItem.appendChild(editButton);
+            listItem.appendChild(deleteButton);
+            todoList.appendChild(listItem);
+        }
+
+        function addTodo() {
+            const todoInput = document.getElementById('todo-input');
+            const taskText = todoInput.value.trim();
+
+            if (taskText === "") {
+                alert("Please enter a task.");
+                return;
+            }
+
+          
+            createTaskItem(taskText);
+
+         
+            todoInput.value = '';
+        }
+    </script>
+</body>
+</html>
