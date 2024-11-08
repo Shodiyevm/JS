@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue.js</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+       
+        <p>{{ message }}</p>
+        <button @click="count++">Count is: {{ count }}</button>  
+        <button @click="print">+1</button>
+    </div>
+    
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: 'Vue.js bilan ishlash',
+                    count: 0
+                };
+            },
+            methods: {
+                print() {
+                    this.count++;
+                    console.log('Count:', this.count);
+                }
+            }
+        });
+
+        app.mount('#app');
+
+    
+    </script>
+</body>
+</html>
